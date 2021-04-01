@@ -14,3 +14,9 @@
 
 - [Micronaut HTTP Client documentation](https://docs.micronaut.io/latest/guide/index.html#httpClient)
 
+<br>
+<br>
+<br>
+
+# References
+[Micronaul Tutorial](https://www.youtube.com/watch?v=rUfRx1aLZ-s&list=PLI_Z0xfLZHL2Ls8jWKyLRvcXogXJQtkKx)
