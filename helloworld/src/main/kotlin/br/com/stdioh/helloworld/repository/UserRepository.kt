@@ -1,4 +1,4 @@
-package br.com.stdioh.helloworld.controller
+package br.com.stdioh.helloworld.repository
 
 import br.com.stdioh.helloworld.config.security.BCryptPasswordEncoderService
 import br.com.stdioh.helloworld.model.User

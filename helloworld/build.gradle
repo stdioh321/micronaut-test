@@ -46,9 +46,13 @@ dependencies {
     implementation("io.micronaut.security:micronaut-security-jwt")
     // https://mvnrepository.com/artifact/javax.validation/validation-api
     implementation group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
+    compile 'com.google.code.gson:gson:2.8.2'
+// https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
+    implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.12.2'
 
 }
 
+mainClassName = "br.com.stdioh.helloworld.Applicaiton"
 
 application {
     mainClass.set("br.com.stdioh.helloworld.ApplicationKt")
@@ -70,4 +74,13 @@ tasks {
     }
 
 
+}
+
+jar {
+    manifest {
+        attributes(
+                'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+                'Main-Class': 'br.com.stdioh.helloworld.Application'
+        )
+    }
 }

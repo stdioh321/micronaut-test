@@ -1,13 +1,11 @@
 package br.com.stdioh.helloworld.config
 
 import br.com.stdioh.helloworld.config.security.BCryptPasswordEncoderService
-import br.com.stdioh.helloworld.controller.UserRepository
+import br.com.stdioh.helloworld.repository.UserRepository
 import br.com.stdioh.helloworld.model.User
 import io.micronaut.context.event.StartupEvent
 import io.micronaut.runtime.event.annotation.EventListener
 import org.slf4j.LoggerFactory
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
-import org.springframework.security.crypto.password.PasswordEncoder
 import javax.inject.Singleton
 
 @Singleton

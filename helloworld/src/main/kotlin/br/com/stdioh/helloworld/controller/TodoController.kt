@@ -13,7 +13,7 @@ import javax.inject.Inject
 import javax.validation.Valid
 
 @Validated
-@Controller(value = "/")
+@Controller(value = "/todo")
 class TodoController(@Inject val todoRepository: TodoRepository) {
     @Get
     fun todoGet(): List<Todo?> {
