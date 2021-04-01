@@ -7,6 +7,8 @@ import io.micronaut.http.HttpResponse
 import io.micronaut.http.MutableHttpResponse
 import io.micronaut.http.annotation.*
 import io.micronaut.validation.Validated
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder
+import java.util.*
 import javax.inject.Inject
 import javax.validation.Valid
 
@@ -31,6 +33,24 @@ class TodoController(@Inject val todoRepository: TodoRepository) {
     @Post
     fun todoPost(@Body @Valid todo: TodoPostForm): Todo {
 
-        return todoRepository.save(todo.toOriginal());
+        return todoRepository.save(todo.toOriginal().apply {
+            val now = Date()
+            this.createdAt = now
+            this.updatedAt = now
+        });
     }
+
+    @Put("/{id}")
+    fun todoPut(@PathVariable("id") id: Long, @Body @Valid newTodo: TodoPostForm): MutableHttpResponse<Todo>? {
+        val todo = todoRepository.findById(id)?.get();
+        if (todo != null) {
+            todo.update(newTodo.toOriginal().apply {
+                this.updatedAt = Date()
+            })
+            return HttpResponse.ok(todo);
+        }
+        return HttpResponse.notFound();
+    }
+
+
 }
