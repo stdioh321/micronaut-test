@@ -5,6 +5,8 @@ plugins {
     id("org.jetbrains.kotlin.plugin.jpa") version "1.4.30"
     id("com.github.johnrengelman.shadow") version "6.1.0"
     id("io.micronaut.application") version "1.4.2"
+    id 'com.google.cloud.tools.jib' version '2.8.0'
+
 }
 
 version = "0.1"
@@ -52,7 +54,7 @@ dependencies {
 
 }
 
-mainClassName = "br.com.stdioh.helloworld.Applicaiton"
+// mainClassName = "br.com.stdioh.helloworld.Applicaiton"
 
 application {
     mainClass.set("br.com.stdioh.helloworld.ApplicationKt")
@@ -76,11 +78,11 @@ tasks {
 
 }
 
-jar {
-    manifest {
-        attributes(
-                'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
-                'Main-Class': 'br.com.stdioh.helloworld.Application'
-        )
-    }
-}
+//jar {
+//    manifest {
+//        attributes(
+//                'Class-Path': configurations.compile.collect { it.getName() }.join(' '),
+//                'Main-Class': 'br.com.stdioh.helloworld.ApplicationKt'
+//        )
+//    }
+//}
