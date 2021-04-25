@@ -4,7 +4,6 @@ import io.micronaut.core.annotation.Introspected
 import io.micronaut.data.annotation.MappedEntity
 import java.util.*
 import javax.persistence.Column
-import javax.persistence.Entity
 
 @MappedEntity
 @Introspected
@@ -18,6 +17,11 @@ abstract class ModelBasic {
     @Column(name = "deleted_at")
     var deletedAt: Date? = null
 
+    init {
+        val d = Date();
+        createdAt = d;
+        updatedAt = d;
+    }
 
     fun update(entity: ModelBasic): Boolean {
         if (this.javaClass != entity.javaClass) return false;

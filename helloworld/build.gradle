@@ -9,8 +9,11 @@ plugins {
 
 }
 
+
 version = "0.1"
 group = "br.com.stdioh.helloworld"
+
+archivesBaseName = "helloworld"
 
 repositories {
     mavenCentral()
@@ -76,6 +79,11 @@ tasks {
     }
 
 
+}
+
+
+shadowJar {
+    archiveFileName = "${archivesBaseName}-all.jar"
 }
 
 //jar {

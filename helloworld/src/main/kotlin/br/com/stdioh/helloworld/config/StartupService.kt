@@ -1,7 +1,9 @@
 package br.com.stdioh.helloworld.config
 
 import br.com.stdioh.helloworld.config.security.BCryptPasswordEncoderService
+import br.com.stdioh.helloworld.model.Todo
 import br.com.stdioh.helloworld.model.User
+import br.com.stdioh.helloworld.repository.TodoRepository
 import br.com.stdioh.helloworld.repository.UserRepository
 import io.micronaut.context.annotation.Value
 import io.micronaut.context.event.StartupEvent
@@ -12,7 +14,8 @@ import javax.inject.Singleton
 @Singleton
 class StartupService(
     private val userRepository: UserRepository,
-    private val bc: BCryptPasswordEncoderService
+    private val bc: BCryptPasswordEncoderService,
+    private val todoRepository: TodoRepository
 ) {
     private val log = LoggerFactory.getLogger(StartupService::class.java)
 
@@ -23,7 +26,7 @@ class StartupService(
     fun onStartupEvent(event: StartupEvent) {
         val cpf: Long = 12309812309;
         log.info("---------------------------------------------------------------")
-        log.info(test)
+        log.info("Startup test: $test")
         log.info("---------------------------------------------------------------")
 
         if (userRepository.findById(cpf).isEmpty) {
@@ -31,6 +34,18 @@ class StartupService(
                 User(cpf, bc.encode("123456"))
             )
             log.info("Usuario adicionado: ${user}");
+        }
+
+    }
+
+    @EventListener
+    fun onStartupEventAddTodos(event: StartupEvent) {
+        if (todoRepository.count() < 1) {
+            for (i in 1..3) {
+                todoRepository.save(
+                    Todo(description = "Startup Todo - $i", done = i % 2 == 0)
+                )
+            }
         }
 
     }

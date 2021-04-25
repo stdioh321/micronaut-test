@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: graal.test
+testFramework: junit
+sourceLanguage: kotlin
+buildTool: gradle_kotlin
+features: [app-name, graalvm, gradle, http-client, java, java-application, junit, logback, netty-server, readme, shade, yaml]

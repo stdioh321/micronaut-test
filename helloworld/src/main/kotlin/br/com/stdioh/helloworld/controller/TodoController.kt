@@ -45,6 +45,7 @@ class TodoController(@Inject val todoRepository: TodoRepository) {
         val todo = todoRepository.findById(id)?.get();
         if (todo != null) {
             todo.update(newTodo.toOriginal().apply {
+                this.createdAt = todo.createdAt;
                 this.updatedAt = Date()
             })
             return HttpResponse.ok(todo);
